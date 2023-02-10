@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.Scanner;
 
 import com.jdbc.database.impls.VehicleImpl;
 
@@ -48,29 +50,59 @@ public class CustomerDb {
 			System.out.println("DataBase Connection Established Succesfully...");
 
 			stmt = conn.createStatement();
-			String cQuery = "create table VehicleInfo (Id int primary key,vehicleNo int unique, "
-					+ "vehicleType varchar(255) not null,vehicleModel varchar(255) not null,"
-					+ "phoneNo varchar(255) unique,customerName varchar(255) not null, time Time)";
+			// String cQuery = "create table VehicleInfo (Id int primary key,vehicleNo int
+			// unique, "
+			// + "vehicleType varchar(255) not null,vehicleModel varchar(255) not null,"
+			// + "phoneNo varchar(255) unique,customerName varchar(255) not null, time
+			// Time)";
+			//
+			// stmt.execute(cQuery);
+			// System.out.println("Table is Created Successfully...");
 
-			stmt.execute(cQuery);
-			System.out.println("Table is Created Successfully...");
+			String insertQuery = "insert into VehicleInfo values(?,?,?,?,?,?,?)";
+			ps = conn.prepareStatement(insertQuery);
+			//
+			 Scanner sc = new Scanner(System.in);
+			// System.out.println("Enter row limit");
+			// int setRowLimit = sc.nextInt();
+			// for (int i = 1; i <= setRowLimit; i++) {
+			// System.out.println("Enter Id");
+			// ps.setInt(1, sc.nextInt());
+			// System.out.println("Enter VehicleNo");
+			// ps.setInt(2, sc.nextInt());
+			// System.out.println("Enter VehicleType");
+			// ps.setString(3, sc.next());
+			// System.out.println("Enter VehicleModel");
+			// ps.setString(4, sc.next());
+			// System.out.println("Enter PhoneNo");
+			// ps.setString(5, sc.next());
+			// System.out.println("Enter CustomerNo");
+			// ps.setString(6, sc.next());
+			// System.out.println("Enter time");
+			// ps.setTime(7, new Time((int) sc.nextLong()));
+			// ps.executeUpdate();
+			// }
+			// System.out.println("Values are Inserted Successfully...");
+
+			System.out.println("DataBase Table Format:");
+			String sQuery = "Select * from VehicleInfo";
+			rs = ps.executeQuery(sQuery);
+			System.out.println("Id"+"\t"+"VNo"+"\t"+"VType"+"\t"+"VModel"+"\t"+"PhoneNum"+"\t"+"CustName"+"\t"+"Time"+"\t");
+			while (rs.next()) {
+
+				System.out.println(rs.getInt(1) + "\t" + rs.getInt(2) + "\t" + rs.getString(3) + "\t" + rs.getString(4)
+						+ "\t" + rs.getString(5) + "\t" + rs.getString(6) + "\t" + rs.getString(7));
+
+			}
 			
-			String insertQuery="insert into VehicleInfo values(?,?,?,?,?,?,?)";
-			ps=conn.prepareStatement(insertQuery);
+			String bVno="Select * from VehicleInfo where VehicleNo =?";
 		
-				ps.setInt(1,2);
-				ps.setInt(2,202);
-				ps.setString(3, "car");
-				ps.setString(4, "c20");
-				ps.setString(5, "77686765655");
-				ps.setString(6, "tomy");
-				ps.setTimestamp(7, new Timestamp(23124L));
-			
-			
-			ps.executeUpdate();
-			
-			System.out.println("Values are Inserted Successfully...");
-			
+			System.out.println("Enter VehicleNo:");
+		
+			rs=ps.executeQuery(bVno);
+
+			System.out.println(rs.getInt(0));
+
 		} catch (SQLException e) {
 
 			System.out.println(e.getSQLState());
@@ -87,6 +119,22 @@ public class CustomerDb {
 					stmt.close();
 				} catch (SQLException e3) {
 					System.out.println(e3.getSQLState());
+				}
+			}
+
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					System.out.println(e.getSQLState());
+				}
+			}
+
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					System.out.println(e.getSQLState());
 				}
 			}
 		}
