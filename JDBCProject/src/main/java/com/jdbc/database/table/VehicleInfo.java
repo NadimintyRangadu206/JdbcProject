@@ -11,16 +11,16 @@ public class VehicleInfo {
 	private String customerName;
 	private Time time;
 
-	public VehicleInfo(int vehicleNo, String vehicleType, String vehicleModel, String phoneNo, String customerName,
-			Time time) {
-		super();
-		this.vehicleNo = vehicleNo;
-		this.vehicleType = vehicleType;
-		this.vehicleModel = vehicleModel;
-		this.phoneNo = phoneNo;
-		this.customerName = customerName;
-		this.time = time;
-	}
+//	public VehicleInfo(int vehicleNo, String vehicleType, String vehicleModel, String phoneNo, String customerName,
+//			Time time) {
+//		super();
+//		this.vehicleNo = vehicleNo;
+//		this.vehicleType = vehicleType;
+//		this.vehicleModel = vehicleModel;
+//		this.phoneNo = phoneNo;
+//		this.customerName = customerName;
+//		this.time = time;
+//	}
 
 	public int getVehicleNo() {
 		return vehicleNo;
