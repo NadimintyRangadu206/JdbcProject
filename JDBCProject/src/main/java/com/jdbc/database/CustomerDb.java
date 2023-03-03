@@ -69,7 +69,7 @@ public class CustomerDb {
 
 				break;
 			case 2:
-	
+				vi.valetParkingList();
 				System.out.println("Enter a number");
 				switch (sc.nextInt()) {
 				case 1:
