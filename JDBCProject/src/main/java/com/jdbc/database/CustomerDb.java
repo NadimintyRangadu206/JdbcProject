@@ -34,6 +34,8 @@ public class CustomerDb {
 
 		case 1:
 
+			
+			
 			cb.db();
 
 			System.out.println("Enter method number ");
@@ -69,7 +71,7 @@ public class CustomerDb {
 
 				break;
 			case 2:
-	
+				vi.valetParkingList();
 				System.out.println("Enter a number");
 				switch (sc.nextInt()) {
 				case 1:
