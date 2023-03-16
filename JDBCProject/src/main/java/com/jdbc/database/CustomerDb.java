@@ -34,6 +34,8 @@ public class CustomerDb {
 
 		case 1:
 
+			
+			
 			cb.db();
 
 			System.out.println("Enter method number ");
